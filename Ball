@@ -1,0 +1,77 @@
+package BouncingBalls;
+import zen.core.Zen;
+
+public class Ball{
+	
+	int ballx;
+	int bally;
+	
+	int balldx;
+	int balldy;
+	
+	String color;
+	
+	//int ballw ;
+	//int ballh;
+	
+	
+	//constructor for the Ball object
+	public Ball(){
+		ballx = Zen.getRandomNumber(15, 485);
+		bally = Zen.getRandomNumber(15, 485);
+		
+		balldx = Zen.getRandomNumber(-10, 10);
+		balldy = Zen.getRandomNumber(-10, 10);
+		int random = Zen.getRandomNumber(1, 4);
+		
+		//ballw = Zen.getRandomNumber(10, 60);
+		//ballh  = ballw;
+	
+	
+	if(random == 1 ){
+		color = "purple";
+	}
+	else if(random == 2 ){
+		color = "blue";
+	}
+	else if(random == 3 ){
+		color = "black";
+	}
+	else if(random == 4 ){
+		color = "red";
+	}
+	}
+	
+	//draw itself
+	public void draw(){
+		Zen.setColor(color);
+		Zen.fillOval(ballx - 15, bally - 15, 20, 20);
+	}
+	
+	//move itself
+	public void move(){
+		ballx = ballx - balldx;
+		bally = bally - balldy;
+		
+		if(ballx < 15||ballx > 485){
+			balldx = -balldx;
+		}
+		if(bally < 15||bally > 485){
+			balldy = -balldy;
+		}
+		
+		
+		
+		
+	}
+	public boolean collides(Ball b){
+		
+		if(Math.abs(ballx - b.ballx) < 20 && Math.abs(bally - b.bally) < 20){
+			
+			return true;
+		}
+		
+		return false;
+	}
+
+}
