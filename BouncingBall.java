@@ -36,6 +36,9 @@ public class BouncingBalls {
 						b2.balldx = -b2.balldx;
 						b1.balldy = -b1.balldy;
 						b2.balldy = -b2.balldy;
+						
+						b1.color = "green";
+						b2.color = "green";
 					}
 				}
 			}
