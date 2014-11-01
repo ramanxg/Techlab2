@@ -1,0 +1,26 @@
+package BrickBreaker;
+import zen.core.Zen;
+import java.util.*;
+
+public class Paddle {
+	
+	int x;
+	
+	public void setup(){
+		x = 225;
+		
+	}
+	public void move() {
+		if(Zen.isKeyPressed("right")){
+			x = x + 5;
+		}
+		if(Zen.isKeyPressed("left")){
+			x = x - 5;
+		}
+	}
+	public void draw() {
+		Zen.setColor("blue");
+		Zen.fillRect(x, 500, 50, 15 );
+	}
+
+}
