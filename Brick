@@ -1,0 +1,29 @@
+package BrickBreaker;
+import zen.core.Zen;
+
+public class Brick {
+
+	int x;
+	int y;
+	
+	public void setup(int i, int j) {
+		x = i;
+		y = j;
+		
+	}
+	public void draw() {
+		Zen.setColor("maroon");
+		Zen.fillRect(x, y, 40, 20);
+	}
+	public boolean isTouching(Ball ball) {
+		if (Math.abs(ball.x - x) < 30 && Math.abs(ball.y -y) < 20) {
+			ball.dy = -ball.dy;
+			return true;
+		}
+		
+		return false;
+	}
+
+	
+	
+}
