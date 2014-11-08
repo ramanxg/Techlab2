@@ -1,0 +1,79 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+import java.util.ArrayList;
+
+
+
+public class ScannerFun {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File book = new File("book.txt");
+		
+		Scanner reader = new Scanner(book);
+		
+		ArrayList<String> allWords = new ArrayList <String> ();
+		
+		HashMap<String, Integer> wordCount = new HashMap<String, Integer> ();
+		
+		
+		int total = 0;
+		
+		while(reader.hasNextLine()){
+			String line = reader.nextLine();
+			line = line.replaceAll("\\.", "");
+			line = line.replaceAll("\\?", "");
+			line = line.replaceAll("\\)", "");
+			line = line.replaceAll("\\(", "");
+			line = line.replaceAll("\\!", "");
+			line = line.replaceAll("\\_", "");
+			line = line.replaceAll("\\-", "");
+			line = line.replaceAll("\\;","" );
+			line = line.replaceAll("\\/", "");
+			line = line.replaceAll("\\*", "");
+			line = line.replaceAll("\\,", "");
+			line = line.replaceAll("\\--", "");
+			line = line.replaceAll("\\\"", "");
+			line = line.replaceAll("\\%", "");
+			line = line.replaceAll("\\[", "");
+			line = line.replaceAll("\\]", "");
+			String[] words = line.split(" ");
+			
+			for(int i = 0; i < words.length; i++){
+				allWords.add(words[i]);
+				
+				if(wordCount.containsKey(words[i])){
+					wordCount.put(words[i], wordCount.get(words[i])+ 1);
+				}
+				
+				else{
+					wordCount.put(words[i], 1);
+				}
+			
+			}
+			total = total + words.length;
+		
+		}
+		String longestWord = allWords.get(0);
+		int totalTom = 0;
+		
+		for(int i = 0; i < allWords.size(); i++){
+			String word = allWords.get(i);
+			
+			if(word.length() > longestWord.length()){
+				longestWord = word;
+			}
+			if(word.equals("Tom") ){
+				totalTom++;
+			}
+		}
+		System.out.println("The word Tom appears " + totalTom + " times.");
+		System.out.println("Word count:" + total);
+		System.out.println("The longest word is " + longestWord);
+		System.out.println("The longest word shows up" + wordCount.get(longestWord) + "times");
+		System.out.println("Unique words : " + wordCount.size());
+		
+	}
+
+}
+	
