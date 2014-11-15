@@ -1,6 +1,8 @@
 package BrickBreaker;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 import zen.core.Zen;
 
 public class BrickBreaker {
@@ -8,6 +10,7 @@ public class BrickBreaker {
 	static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	static Ball ball = new Ball();
 	static Paddle paddle = new Paddle();
+	static Score score = new Score();
 	
 	public static void main(String[] args) {
 		Zen.create(400, 600);
@@ -28,27 +31,57 @@ public class BrickBreaker {
 	}
 
 	private static void loop() {
+		
 		ball.draw();
 		ball.move();
+		paddle.draw();
+		paddle.move();
+		
 		
 		int index = 0;
-		
-		while(index < bricks.size()){
-			Brick b = bricks.get(index);
-			b.draw();
-			if (b.isTouching(ball)){
-				bricks.remove(index);
+		int index1 = 0;
+		if(index<bricks.size()){
+			while(index < bricks.size()){
+				Brick b = bricks.get(index);
+				b.draw();
+				if (b.isTouching(ball)){
+					bricks.remove(index);
+					index1++;
+				}
+				index = index + 1;
+				
+				
 			}
-			index = index + 1;
 		}
+		if(paddle.isTouching(ball)){
+			ball.dy = -ball.dy;
+			score.score++;
+		}
+
+		if (index1 > bricks.size()){
+			gameOver();
+		}
+		else if(ball.y == 600){
+			gameOver();
+		}
+		
+		
+		
+		
 		
 		
 		
 	}
 
+	private static void gameOver() {
+		JOptionPane.showMessageDialog(null, "Game Over");
+		System.exit(0);
+	}
+
 	private static void setup() {
 		
 		ball.setup();
+		paddle.setup();
 		
 		Brick b;
 		for(int j = 100; j <300; j = j + 50){
