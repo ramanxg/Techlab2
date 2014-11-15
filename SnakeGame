@@ -1,0 +1,55 @@
+package Snake;
+
+import zen.core.Zen;
+
+import java.*;
+
+import javax.swing.JOptionPane;
+
+public class SnakeGame {
+	public static void main(String[] args){
+		Zen.create(500,500);
+		
+		Snake head = new Snake();
+		Food snakeFood = new Food();
+		
+		
+		
+		while(true){
+			Zen.setBackground("black");
+			
+			head.draw();
+			head.move();
+			head.checkKeys();
+			snakeFood.draw();
+			for(int i = 0; i <= 100; i++){
+			if(snakeFood.x == head.x && snakeFood.y == head.y){
+				Zen.setBackground("black");
+				head.grow();
+				snakeFood = new Food();
+				
+					
+				}
+			i++;
+			
+			if(i == 100){
+				JOptionPane.showMessageDialog(null, "You Win!");
+				System.exit(0);
+			}
+			}
+			if(head.dead()){
+				head.die();
+			}
+			
+			
+			
+			
+			
+			
+			Zen.buffer(33);;
+		}
+	}
+
+	
+
+}
