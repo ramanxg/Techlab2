@@ -1,13 +1,15 @@
 package BrickBreaker;
 import zen.core.Zen;
-import java.util.*;
+
+
 
 public class Paddle {
 	
 	int x;
-	
+	int y;
 	public void setup(){
-		x = 225;
+		x = 200;
+		y = 500;
 		
 	}
 	public void move() {
@@ -20,7 +22,15 @@ public class Paddle {
 	}
 	public void draw() {
 		Zen.setColor("blue");
-		Zen.fillRect(x, 500, 50, 15 );
+		Zen.fillRect(x - 25, y - 8, 50, 16 );
+	}
+	public boolean isTouching(Ball ball) {
+		if (Math.abs(x - ball.x) < 40 && Math.abs(y - ball.y) < 16) {
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 }
