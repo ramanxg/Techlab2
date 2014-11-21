@@ -89,11 +89,12 @@ public class Snake2 {
 		
 	}
 	int a = 10;
+	int b =10;
 	public void grow1() {
 		if(next == null){
 			
 			next = new Snake2();
-			next.x = x;
+			next.x = x - dx;
 			next.y = y - dy + a;
 			next.dx = dx;
 			next.dy = dy;
@@ -111,7 +112,7 @@ public class Snake2 {
 		if(next == null){
 			next = new Snake2();
 			next.x = x - dx;
-			next.y = y - dy - a*2;
+			next.y = y - dy - a;
 			next.dx = dx;
 			next.dy = dy;
 			
@@ -123,7 +124,40 @@ public class Snake2 {
 		
 		
 	}
+	public void grow3() {
+		if(next == null){
+			
+			next = new Snake2();
+			next.x = x + dx;
+			next.y = y + dy + b;
+			next.dx = dx;
+			next.dy = dy;
+			b = b+10;
+		}
+		else{
+			
+			next.grow4();
+		}
+		
+		
+	}
+	public void grow4() {
 	
+		if(next == null){
+			next = new Snake2();
+			next.x = x + dx;
+			next.y = y + dy - b;
+			next.dx = dx;
+			next.dy = dy;
+			
+		}
+		else{
+			
+			next.grow3();
+		}
+		
+		
+	}
 	
 	
 
