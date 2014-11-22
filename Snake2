@@ -128,8 +128,8 @@ public class Snake2 {
 		if(next == null){
 			
 			next = new Snake2();
-			next.x = x + dx;
-			next.y = y + dy + b;
+			next.x = x - dx;
+			next.y = y - dy + b;
 			next.dx = dx;
 			next.dy = dy;
 			b = b+10;
@@ -145,8 +145,8 @@ public class Snake2 {
 	
 		if(next == null){
 			next = new Snake2();
-			next.x = x + dx;
-			next.y = y + dy - b;
+			next.x = x - dx;
+			next.y = y - dy - b;
 			next.dx = dx;
 			next.dy = dy;
 			
